@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
     ports:
-      - "4000:3000"
+      - "3005:3000"
     restart: always
     networks:
       - red-general

@@ -10,6 +10,12 @@ RUN npm ci
 
 # Copy full source and run the Next.js build.
 COPY . .
+
+# --- AGREGA ESTAS DOS LÍNEAS AQUÍ ---
+ARG NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL
+# ------------------------------------
+
 RUN npm run build
 
 # Runtime stage: keep only the final standalone application and static assets.

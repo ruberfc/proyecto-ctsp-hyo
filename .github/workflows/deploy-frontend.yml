@@ -24,7 +24,9 @@ jobs:
       - name: Construir imagen Docker para ARM64
         working-directory: web_trabajador_social
         run: |
-          docker buildx build --platform linux/arm64 --load -t service-web-trabajador-social-image:latest .
+          docker buildx build --platform linux/arm64 \
+            --build-arg NEXT_PUBLIC_API_BASE_URL="${{ vars.NEXT_PUBLIC_API_URL }}" \
+            --load -t service-web-trabajador-social-image:latest .
 
       - name: Guardar imagen Docker como archivo tar
         working-directory: web_trabajador_social
