@@ -1,0 +1,43 @@
+{
+  "name": "web_trabajador_social",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/react-modal": "^3.16.3",
+    "alert-kit": "^2.1.8",
+    "axios": "^1.5.1",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^4.0.0",
+    "next": "15.5.22",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
+    "react-modal": "^3.16.3",
+    "react-tooltip": "^5.29.1",
+    "sweetalert2": "^11.7.32",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/file-saver": "^2.0.7",
+    "@types/jwt-decode": "^3.1.0",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.22",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}

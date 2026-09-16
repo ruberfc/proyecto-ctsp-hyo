@@ -1,0 +1,24 @@
+# Versión de la configuración de Docker Compose
+version: '3.8'
+
+# Definición de servicios
+services:
+  # Servicio llamado 'web_trabajador_social'
+  service-web-trabajador-social:
+    # Usar la imagen ya construida en GitHub Actions / CI.
+    platform: linux/arm64
+    image: service-web-trabajador-social-image:latest
+    container_name: service-web-trabajador-social
+    env_file:
+      - .env
+    ports:
+      - "4000:3000"
+    restart: always
+    networks:
+      - red-general
+
+# Definición de redes
+networks:
+  # Se conecta a la red existente creada por infraestructura
+  red-general:
+    external: true

@@ -1,0 +1,30 @@
+==================================================
+  COLEGIO DE TRABAJADORES SOCIALES - HUANCAYO
+  Recuperación de Contraseña
+==================================================
+
+Hola {{nombre}},
+
+Recibimos una solicitud para restablecer la contraseña de tu cuenta 
+{{#if (eq tipo "usuario")}}Usuario del Sistema{{else}}Colegiado{{/if}}.
+
+Tu código de verificación es:
+
+    {{codigo}}
+
+┌────────────────────────────────────────────────┐
+│  IMPORTANTE:                                    │
+│  • Código válido por {{expiracionMinutos}} minutos           │
+│  • Este código solo puede usarse una vez       │
+│  • No compartas este código con nadie          │
+└────────────────────────────────────────────────┘
+
+Si no solicitaste este cambio, ignora este correo. 
+Tu contraseña no será modificada.
+
+---
+Este es un correo automático, por favor no respondas.
+© {{anio}} Colegio de Trabajadores Sociales de Huancayo - Junín.
+Todos los derechos reservados.
+
+Enviado a: {{to}}

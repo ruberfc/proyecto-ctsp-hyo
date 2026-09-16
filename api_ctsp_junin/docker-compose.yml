@@ -1,0 +1,23 @@
+# Versión de la configuración de Docker Compose
+version: "3"
+
+# Definición de servicios
+services:
+  service-api-ctsp-junin:
+    # Usar la imagen ya construida en GitHub Actions / CI.
+    platform: linux/arm64
+    image: service-api-ctsp-junin-image:latest
+    container_name: service-api-ctsp-junin
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: always
+    networks:
+      - red-general
+
+# Definición de redes
+networks:
+  # Se conecta a la red existente creada por infraestructura
+  red-general:
+    external: true

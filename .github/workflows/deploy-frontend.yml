@@ -1,0 +1,61 @@
+name: Deploy Frontend to Oracle Cloud VM
+# Este workflow construye la imagen Docker en GitHub Actions, la guarda como tar,
+# y copia únicamente el contenedor construido al servidor remoto.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'web_trabajador_social/**'
+      - '.github/workflows/deploy-frontend.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Construir imagen Docker para ARM64
+        working-directory: web_trabajador_social
+        run: |
+          docker buildx build --platform linux/arm64 --load -t service-web-trabajador-social-image:latest .
+
+      - name: Guardar imagen Docker como archivo tar
+        working-directory: web_trabajador_social
+        run: |
+          docker save service-web-trabajador-social-image:latest | gzip > image.tar.gz
+
+      - name: Configurar agente SSH
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Crear carpeta remota en el servidor
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} "mkdir -p ${{ secrets.REMOTE_PATH }}/web_trabajador_social"
+
+      - name: Copiar archivos de despliegue al servidor
+        run: |
+          rsync -av --delete -e "ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" --exclude='.git' --exclude='node_modules' --exclude='.next' --exclude='.github' --exclude='image.tar.gz' --exclude='.env' web_trabajador_social/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/web_trabajador_social
+
+      - name: Copiar imagen Docker compilada al servidor
+        run: |
+          scp -P ${{ secrets.SSH_PORT }} web_trabajador_social/image.tar.gz ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:${{ secrets.REMOTE_PATH }}/web_trabajador_social/image.tar.gz
+
+      - name: Cargar imagen y desplegar contenedor en el servidor
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.SSH_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} <<'EOF'
+            cd ${{ secrets.REMOTE_PATH }}/web_trabajador_social
+            docker load -i image.tar.gz
+            docker compose up -d
+          EOF
+
+      - name: Limpiar artefacto de compilación
+        run: |
+          rm -f web_trabajador_social/image.tar.gz

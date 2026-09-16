@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --navbar-bg: #1e3a5f;
+  --navbar-foreground: #f8fafc;
+  --navbar-hover: #1e40a0;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --card-hover: #f3f4f6;
+  --input-bg: #ffffff;
+  --input-border: #d1d5db;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --border: #e5e7eb;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-foreground: #ffffff;
+  --secondary: #7c3aed;
+  --secondary-hover: #6d28d9;
+  --accent: #f59e0b;
+  --accent-hover: #d97706;
+  --success: #10b981;
+  --error: #ef4444;
+  --overlay: rgba(0, 0, 0, 0.5);
+  --dropdown-bg: #ffffff;
+  --dropdown-border: #e5e7eb;
+  --dropdown-hover: #f3f4f6;
+  --link-hover: #1d4ed8;
+  --skeleton-from: #e5e7eb;
+  --skeleton-to: #d1d5db;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.dark {
+  --background: #0d1b2e;
+  --foreground: #e3e9f3;
+  --navbar-bg: #0a1628;
+  --navbar-foreground: #f8fafc;
+  --navbar-hover: #1e3a5f;
+  --card-bg: #15233c;
+  --card-border: #263551;
+  --card-hover: #1a2a45;
+  --input-bg: #101e33;
+  --input-border: #33456a;
+  --muted: #101e33;
+  --muted-foreground: #8fa3bf;
+  --border: #263551;
+  --primary: #3b82f6;
+  --primary-hover: #60a5fa;
+  --primary-foreground: #ffffff;
+  --secondary: #a78bfa;
+  --secondary-hover: #c4b5fd;
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+  --success: #34d399;
+  --error: #f87171;
+  --overlay: rgba(0, 0, 0, 0.7);
+  --dropdown-bg: #101e33;
+  --dropdown-border: #263551;
+  --dropdown-hover: #1a2a45;
+  --link-hover: #60a5fa;
+  --skeleton-from: #263551;
+  --skeleton-to: #33456a;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navbar: var(--navbar-bg);
+  --color-navbar-foreground: var(--navbar-foreground);
+  --color-navbar-hover: var(--navbar-hover);
+  --color-card: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-card-hover: var(--card-hover);
+  --color-input: var(--input-bg);
+  --color-input-border: var(--input-border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-overlay: var(--overlay);
+  --color-dropdown-bg: var(--dropdown-bg);
+  --color-dropdown-border: var(--dropdown-border);
+  --color-dropdown-hover: var(--dropdown-hover);
+  --color-link-hover: var(--link-hover);
+  --color-skeleton-from: var(--skeleton-from);
+  --color-skeleton-to: var(--skeleton-to);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+input, textarea, select {
+  background-color: var(--input-bg);
+  border-color: var(--input-border);
+  color: var(--foreground);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-from) 25%, var(--skeleton-to) 50%, var(--skeleton-from) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+html.dark .skeleton {
+  background: linear-gradient(90deg, var(--skeleton-from) 25%, var(--skeleton-to) 50%, var(--skeleton-from) 75%);
+  background-size: 200% 100%;
+}
