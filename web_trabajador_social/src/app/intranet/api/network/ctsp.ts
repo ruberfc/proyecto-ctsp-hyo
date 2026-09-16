@@ -5,7 +5,7 @@ import RestError from '../model/class/restError';
 import { ValueMsg } from '../model/interface/valueMsg';
 
 const instance = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_BASE_UR,
+    baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     timeout: 10000,
     headers: {
         "Accept": "application/json",
