@@ -17,7 +17,7 @@ Al trabajar en un proyecto, lee SOLO el archivo de ese proyecto (y este raíz). 
 
 ## Convenciones compartidas (contrato frontend ↔ backend)
 
-- Comunicación: el frontend llama a `http://localhost:8000/` (baseURL configurada con `NEXT_PUBLIC_API_BASE_UR` en `.env`).
+- Comunicación: el frontend llama a `http://localhost:8000/` (baseURL configurada con `NEXT_PUBLIC_API_BASE_URL` en `.env`).
 - Autenticación: JWT Bearer (`Authorization: Bearer <token>`), login en `POST /usuarios/login-usuario`.
 - Respuesta exitosa del backend: `{ rs: <dato> }`. El frontend lo tipa con la interfaz `Lista` (array).
 - Resultados tipo mensaje: `ValueMsg[]` con `{ value, msg }` donde `value` = `1` (ok), `2` (warning), `0` (error).
@@ -34,7 +34,7 @@ Al trabajar en un proyecto, lee SOLO el archivo de ese proyecto (y este raíz). 
 
 Mantener este archivo sincronizado **en el mismo cambio de código** que lo origina. Actualizarlo cuando:
 
-- Cambie el contrato compartido: estructura de respuesta `{ rs }`, esquema `ValueMsg` (1/2/0), autenticación JWT, `NEXT_PUBLIC_API_BASE_UR`/puerto, convenciones `snake_case`/`estado`/fechas `"1900-01-01"` o el patrón de endpoints.
+- Cambie el contrato compartido: estructura de respuesta `{ rs }`, esquema `ValueMsg` (1/2/0), autenticación JWT, `NEXT_PUBLIC_API_BASE_URL`/puerto, convenciones `snake_case`/`estado`/fechas `"1900-01-01"` o el patrón de endpoints.
 - Un cambio toque ambos proyectos (ej. nuevo endpoint que consume el frontend, cambio de login).
 - Se renombren/muevan proyectos o carpetas raíz, o cambie la infraestructura (Docker/CI).
 - Un proyecto deje de ser independiente (monorepo se divide o se fusionan).
