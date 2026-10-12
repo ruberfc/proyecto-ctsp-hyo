@@ -87,6 +87,7 @@ export default function GalleryImageModal({
                         alt={activeImage.title}
                         fill
                         sizes="100vw"
+                        unoptimized
                         className="object-contain"
                         priority
                     />
