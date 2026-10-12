@@ -13,13 +13,17 @@ export const siteContact = {
         display: 'informes@ctspjunin.org.pe',
         href: 'mailto:informes@ctspjunin.org.pe',
     },
+    secretariaEmail: {
+        display: 'secretaria@ctspjunin.org.pe',
+        href: 'mailto:secretaria@ctspjunin.org.pe',
+    },
     address: {
         display: 'Av. Giráldez 634 - Oficina 102 (Cámara de Comercio de Huancayo)',
         office: 'Av. Giráldez N° 634 - Oficina N° 102',
         reference: 'Cámara de Comercio de Huancayo',
     },
     officeHours: {
-        weekdays: 'Lunes a Viernes: 10:00 am - 1:00 pm y 4:00 pm - 7:00 pm',
+        weekdays: 'Lunes a Viernes: 09:00 am - 1:00 pm y 3:00 pm - 6:00 pm',
         saturday: 'Sábados: 9:00 am - 12:00 pm',
     },
     social: {

@@ -98,10 +98,11 @@ export default function Footer() {
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                     {siteContact.officeHours.weekdays}
                                 </li>
-                                <li className="flex items-center gap-2 text-gray-400">
+                                {/* <li className="flex items-center gap-2 text-gray-400">
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                     {siteContact.officeHours.saturday}
-                                </li>
+                                </li> */}
+                                
                                 {/* <li className="flex items-center gap-2 text-gray-400">
                                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
                                     <BiFemale className="text-blue-500 w-4 h-4 ml-5" />

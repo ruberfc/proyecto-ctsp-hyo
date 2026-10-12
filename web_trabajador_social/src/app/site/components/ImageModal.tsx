@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from 'react';
 import Image from 'next/image';
+import { FiX } from 'react-icons/fi';
 
 interface ImageModalProps {
   isOpen: boolean;
@@ -39,17 +40,24 @@ const ImageModal: React.FC<ImageModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/75 p-4 backdrop-blur-sm">
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-gray-900/75 p-4 backdrop-blur-sm"
+      onClick={onClose}
+      role="presentation"
+    >
       <div className="relative max-w-5xl max-h-[95vh] w-full">
         {/* Botón de cerrar */}
         <button
+          type="button"
           onClick={onClose}
           title="Cerrar"
-          className="font-bold absolute top-4 right-4 z-10 bg-white dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-red-500 rounded-full p-2 transition-all duration-300 shadow-lg"
+          aria-label="Cerrar imagen"
+          className="absolute top-4 right-4 z-10 grid size-10 place-items-center rounded-md border border-white/20 text-white transition-colors hover:border-red-500 hover:bg-red-600 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          {/* <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          </svg> */}
+          <FiX size={22} aria-hidden="true" />
         </button>
         
         {/* Imagen */}
@@ -60,12 +68,13 @@ const ImageModal: React.FC<ImageModalProps> = ({
             width={1200}
             height={1200}
             className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            onClick={(event) => event.stopPropagation()}
           />
         </div>
         
         {/* Título de la imagen */}
         {imageTitle && (
-          <div className="absolute bottom-2 left-4 right-4 bg-gray-500/20 text-white py-2 px-3 rounded-lg backdrop-blur-sm">
+          <div className="absolute bottom-2 left-4 right-4 bg-gray-500/20 text-white py-2 px-3 rounded-lg backdrop-blur-sm" onClick={(event) => event.stopPropagation()}>
             <h3 className="text-lg font-semibold">{imageTitle}</h3>
           </div>
         )}

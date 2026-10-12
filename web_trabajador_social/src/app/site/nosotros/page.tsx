@@ -214,7 +214,7 @@ function Nosostros() {
                       <h3 className="font-semibold mb-1">Horario de Atención</h3>
                       <p className="text-white/90">
                         {siteContact.officeHours.weekdays}<br />
-                        {siteContact.officeHours.saturday}
+                        {/* {siteContact.officeHours.saturday} */}
 
                       </p>
                     </div>

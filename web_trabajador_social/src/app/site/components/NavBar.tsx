@@ -15,7 +15,7 @@ export default function NavBar() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   // Rutas que activan el estado de INSTITUCIONAL
-  const institutionalRoutes = ['/site/historia', '/site/consejo', '/site/nosotros', '/site/institucional'];
+  const institutionalRoutes = ['/site/historia', '/site/consejo', '/site/nosotros', '/site/estatuto', '/site/reglamento-ley', '/site/institucional'];
   const isInstitutionalActive = institutionalRoutes.some(route => pathname?.startsWith(route));
 
   useEffect(() => {
@@ -80,6 +80,8 @@ export default function NavBar() {
                   <li><Link href="/site/historia" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">HISTORIA</Link></li>
                   <li><Link href="/site/consejo" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">CONSEJO DIRECTIVO</Link></li>
                   <li><Link href="/site/nosotros" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">NOSOTROS</Link></li>
+                  <li><Link href="/site/estatuto" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">ESTATUTO VIGENTE</Link></li>
+                  <li><Link href="/site/reglamento-ley" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">REGLAMENTO LEY</Link></li>
                 </ul>
               </li>
 
@@ -159,6 +161,16 @@ export default function NavBar() {
                 <li>
                   <Link href="/site/nosotros" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">
                     NOSOTROS
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/site/estatuto" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">
+                    ESTATUTO VIGENTE
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/site/reglamento-ley" className="block px-4 py-2 hover:text-primary-foreground hover:bg-primary rounded-md">
+                    REGLAMENTO LEY
                   </Link>
                 </li>
               </ul>

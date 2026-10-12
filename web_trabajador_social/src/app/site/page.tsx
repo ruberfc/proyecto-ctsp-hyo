@@ -1,8 +1,8 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import PageContainer from "@/app/site/components/PageContainer";
 import Carousel from "@/app/site/components/Carousel";
-import ImageModal from "@/app/site/components/ImageModal";
+import GalleryImageModal from "@/app/site/components/GalleryImageModal";
 import { siteContact } from '@/app/site/constants/contact';
 import { FaArrowRight, FaUsers, FaBuilding, FaBook, FaHandshake, FaLaptop, FaUserTie, FaUniversity, FaClipboardList, FaGavel, FaGlobe, FaHeartbeat, FaLightbulb, FaChalkboardTeacher, FaBalanceScale, FaPencilRuler, FaRegLightbulb, FaImage, FaGraduationCap, FaAward, FaHandsHelping } from 'react-icons/fa';
 import { BsCameraReelsFill, BsCloudFill, BsDatabaseFill } from 'react-icons/bs';
@@ -45,16 +45,39 @@ const colorPalette = [
 ];
 
 // Imágenes de la galería (extraídas a la parte superior)
+// const galleryImages: { src: string; title: string }[] = [
+//   { src: "/images/site/galeria/galeria_1.webp", title: "Evento Institucional" },
+//   { src: "/images/site/galeria/galeria_2.webp", title: "Ceremonia de Graduación" },
+//   { src: "/images/site/galeria/galeria_3.webp", title: "Taller de Capacitación" },
+//   { src: "/images/site/galeria/galeria_4.webp", title: "Charlas Educativas" },
+//   { src: "/images/site/galeria/galeria_5.webp", title: "Actividad Comunitaria" },
+//   { src: "/images/site/galeria/galeria_6.webp", title: "Foro Profesional" },
+//   { src: "/images/site/galeria/galeria_7.webp", title: "Juramentación" },
+//   { src: "/images/site/galeria/galeria_8.webp", title: "Brindis de aniversario" },
+//   { src: "/images/site/galeria/galeria_9.webp", title: "Jornada de Integración" },
+// ];
+
+
 const galleryImages: { src: string; title: string }[] = [
+
+  //Nuevas
+
+  // { src: "/images/site/galeria/img/img1.webp", title: "Evento Institucional" },
+  { src: "/images/site/galeria/img/Img2.webp", title: "Entrega de diploma a nueva colegiada" },
+  { src: "/images/site/galeria/img/img3.webp", title: "Reconocimiento a profesional incorporada" },
+  { src: "/images/site/galeria/img/img4.webp", title: "Diploma de colegiatura junto al Consejo Directivo" },
+  { src: "/images/site/galeria/img/img5.webp", title: "Retrato de una nueva integrante del gremio" },
+  { src: "/images/site/galeria/img/img6.webp", title: "Celebración de un nuevo hito institucional" },
+  { src: "/images/site/galeria/img/img7.webp", title: "Juramentación de nuevas profesionales" },
+  { src: "/images/site/galeria/img/img8.webp", title: "Compromiso profesional ante el Consejo Directivo" },
+
+  //Antiguas
+
   { src: "/images/site/galeria/galeria_1.webp", title: "Evento Institucional" },
   { src: "/images/site/galeria/galeria_2.webp", title: "Ceremonia de Graduación" },
   { src: "/images/site/galeria/galeria_3.webp", title: "Taller de Capacitación" },
   { src: "/images/site/galeria/galeria_4.webp", title: "Charlas Educativas" },
   { src: "/images/site/galeria/galeria_5.webp", title: "Actividad Comunitaria" },
-  { src: "/images/site/galeria/galeria_6.webp", title: "Foro Profesional" },
-  { src: "/images/site/galeria/galeria_7.webp", title: "Juramentación" },
-  { src: "/images/site/galeria/galeria_8.webp", title: "Brindis de aniversario" },
-  { src: "/images/site/galeria/galeria_9.webp", title: "Jornada de Integración" },
 ];
 
 
@@ -70,9 +93,7 @@ const getRandomIconsWithColors = (count: number) => {
 };
 
 function SitePage() {
-  // Estado para controlar el modal de la galería
-  const [selectedImage, setSelectedImage] = useState<{ src: string; title: string } | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
 
   // Estado para controlar la carga de cada imagen de la galería
   const [loadedGallery, setLoadedGallery] = useState<{ [index: number]: boolean }>({});
@@ -108,17 +129,25 @@ function SitePage() {
     </div>,
   ];
 
-  // Función para abrir el modal
-  const openModal = (image: { src: string; title: string }) => {
-    setSelectedImage(image);
-    setIsModalOpen(true);
+  const openModal = (index: number) => {
+    setActiveGalleryIndex(index);
   };
 
-  // Función para cerrar el modal
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedImage(null);
-  };
+  const closeModal = useCallback(() => setActiveGalleryIndex(null), []);
+
+  const showPreviousGalleryImage = useCallback(() => {
+    setActiveGalleryIndex((currentIndex) => {
+      if (currentIndex === null || galleryImages.length === 0) return currentIndex;
+      return (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    });
+  }, []);
+
+  const showNextGalleryImage = useCallback(() => {
+    setActiveGalleryIndex((currentIndex) => {
+      if (currentIndex === null || galleryImages.length === 0) return currentIndex;
+      return (currentIndex + 1) % galleryImages.length;
+    });
+  }, []);
 
 
   // Estado para los iconos (con colores) que cambian aleatoriamente
@@ -225,7 +254,7 @@ function SitePage() {
                 <div
                   key={index}
                   className="relative aspect-square bg-gray-100 dark:bg-slate-800 rounded-xl overflow-hidden group cursor-pointer hover:shadow-xl transition-all duration-300 border border-gray-300 dark:border-slate-600"
-                  onClick={() => openModal(image)}
+                  onClick={() => openModal(index)}
                 >
                   {/* Skeleton */}
                   {!loadedGallery[index] && (
@@ -284,12 +313,12 @@ function SitePage() {
         </section>
 
         {/* Modal para mostrar imagen en pantalla completa */}
-        <ImageModal
-          isOpen={isModalOpen}
+        <GalleryImageModal
+          images={galleryImages}
+          activeIndex={activeGalleryIndex}
           onClose={closeModal}
-          imageSrc={selectedImage?.src || ""}
-          imageAlt={selectedImage?.title || ""}
-          imageTitle={selectedImage?.title}
+          onPrevious={showPreviousGalleryImage}
+          onNext={showNextGalleryImage}
         />
 
       </div>
