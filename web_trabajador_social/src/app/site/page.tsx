@@ -127,6 +127,24 @@ function SitePage() {
         <p className="absolute bottom-[18%] left-6 max-w-xl border-l border-white/40 pl-4 text-base leading-relaxed text-white/90 drop-shadow-lg sm:bottom-[20%] sm:left-12 sm:text-lg lg:bottom-[18%] lg:left-20">Trabajamos unidos por el bienestar social y la defensa de los derechos humanos.</p>
       </div>
     </div>,
+    <div key="item4" className="relative h-[clamp(420px,52vw,680px)] overflow-hidden bg-slate-900">
+      <Image src="/images/site/slide/slide_4.webp" alt="Consejo Directivo Regional VI durante ceremonia institucional" fill className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/25 to-slate-950/5" />
+      <div className="relative z-10 h-full w-full px-6 sm:px-12 lg:px-20">
+        <p className="absolute right-4 top-1 inline-flex items-center gap-3 border-l-4 border-blue-400 bg-blue-950/55 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-blue-100 shadow-lg shadow-blue-950/30 sm:right-8 sm:top-2 sm:text-sm lg:right-16"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-blue-300/70 bg-blue-400/20 text-blue-300 shadow-inner shadow-blue-300/25"><FaUsers className="h-5 w-5" /></span><span>Consejo Regional VI</span></p>
+        <h2 className="absolute left-1/2 top-[30%] w-[92%] -translate-x-1/2 text-center text-3xl font-bold leading-[1.05] tracking-tight text-white drop-shadow-2xl sm:top-[24%] sm:w-[94%] sm:text-4xl lg:top-[10%] lg:w-full lg:text-5xl">Liderazgo al servicio de la <span className="text-blue-300">profesión</span></h2>
+        <p className="absolute bottom-[18%] left-6 max-w-xl border-l border-white/40 pl-4 text-base leading-relaxed text-white/90 drop-shadow-lg sm:bottom-[20%] sm:left-12 sm:text-lg lg:bottom-[18%] lg:left-20">El Consejo Directivo Regional VI acompaña el desarrollo y la representación de las trabajadoras sociales de Junín.</p>
+      </div>
+    </div>,
+    <div key="item5" className="relative h-[clamp(420px,52vw,680px)] overflow-hidden bg-slate-900">
+      <Image src="/images/site/slide/slide_5.webp" alt="Profesionales reconocidas durante una ceremonia del CTSP" fill className="object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/60 via-slate-950/25 to-slate-950/5" />
+      <div className="relative z-10 h-full w-full px-6 sm:px-12 lg:px-20">
+        <p className="absolute right-4 top-1 inline-flex items-center gap-3 border-l-4 border-amber-400 bg-amber-950/50 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-amber-100 shadow-lg shadow-amber-950/30 sm:right-8 sm:top-2 sm:text-sm lg:right-16"><span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/70 bg-amber-400/20 text-amber-300 shadow-inner shadow-amber-300/25"><FaAward className="h-5 w-5" /></span><span>Reconocimiento profesional</span></p>
+        <h2 className="absolute left-1/2 top-[30%] w-[92%] -translate-x-1/2 text-center text-3xl font-bold leading-[1.05] tracking-tight text-white drop-shadow-2xl sm:top-[24%] sm:w-[94%] sm:text-4xl lg:top-[10%] lg:w-full lg:text-5xl">Celebramos a las nuevas <span className="text-amber-300">colegiadas</span></h2>
+        <p className="absolute bottom-[18%] left-6 max-w-xl border-l border-white/40 pl-4 text-base leading-relaxed text-white/90 drop-shadow-lg sm:bottom-[20%] sm:left-12 sm:text-lg lg:bottom-[18%] lg:left-20">Un reconocimiento al compromiso y la vocación de quienes se incorporan al Trabajo Social.</p>
+      </div>
+    </div>,
   ];
 
   const openModal = (index: number) => {
